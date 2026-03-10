@@ -1,0 +1,73 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+
+# dev
+/.idea
+# install
+/upload/install/
+# storage
+storage/cache/*
+!storage/cache/index.html
+storage/download/*
+!storage/download/index.html
+storage/logs/*
+!storage/logs/index.html
+storage/modification/*
+!storage/modification/index.html
+storage/session/*
+!storage/session/index.html
+storage/upload/*
+!storage/upload/index.html
+storage/vendor/*
+# images
+/upload/image/import_files/*
+/upload/image/catalog/*
+!/upload/image/catalog/colors/
+!/upload/image/catalog/logo.*
+/upload/image/cache/
+/upload/image/ocfilter/
+/upload/min/
+# css
+.sass-cache/*
+/upload/admin/view/stylesheet/bootstrap.css
+/upload/catalog/view/theme/*/stylesheet/custom.css
+/upload/catalog/view/theme/*/stylesheet/dynamic_stylesheet_*.css
+/upload/catalog/view/theme/*/stylesheet/ocfilter/
+# sitemap
+/upload/sitemap*.xml
+# Serializer
+/upload/system/helper/HTMLPurifier/DefinitionCache/Serializer/*
+!/upload/system/helper/HTMLPurifier/DefinitionCache/Serializer/README
+# others
+CHANGELOG.md
+CHANGELOG_AUTO.md
+install.txt
+license.txt
+upgrade.txt
+# price
+/upload/price/*
+!/upload/price/index.html
+/upload/price/import/*
+!/upload/price/import/index.html

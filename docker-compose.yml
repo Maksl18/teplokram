@@ -1,0 +1,42 @@
+services:
+  app:
+    container_name: teplokram-app-local
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    restart: always
+    volumes:
+      - ./:/var/www/html
+      - ./docker-compose/nginx/default.conf:/etc/nginx/sites-available/default
+      - ./docker-compose/nginx/default.conf:/etc/nginx/sites-enabled/default
+      - ./docker-compose/crontab/crontab:/etc/crontab
+      - ./docker-compose/php-fpm/docker.conf:/usr/local/etc/php-fpm.d/docker.conf
+    depends_on:
+      - mysql
+    networks:
+      - internal_proxy
+    ports:
+      - 80:80 #було 8000:80
+
+  mysql:
+    image: mysql:8.0
+    container_name: teplokram-db-local
+    restart: unless-stopped
+    volumes:
+      - ./docker-compose/mysql/database:/var/lib/mysql
+      - ./docker-compose/mysql/dump:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password --sort_buffer_size=256M --max_allowed_packet=32505856
+    environment:
+      MYSQL_DATABASE: ${OPENCART_DB_DATABASE}
+      MYSQL_USER: ${OPENCART_DB_USERNAME}
+      MYSQL_PASSWORD: ${OPENCART_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${OPENCART_DB_PASSWORD}
+      SERVICE_TAGS: prod
+      SERVICE_NAME: mysql
+    networks:
+      - internal_proxy
+    ports:
+      - 3306:3306
+
+networks:
+  internal_proxy:
